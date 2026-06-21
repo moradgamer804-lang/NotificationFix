@@ -3,8 +3,6 @@ name: Build APK
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
 
 jobs:
   build:
@@ -18,19 +16,28 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
 
     - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      run: |
+        mkdir -p $ANDROID_HOME/cmdline-tools
+        cd $ANDROID_HOME/cmdline-tools
+        curl -sL "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" -o tools.zip
+        unzip -q tools.zip
+        mv cmdline-tools latest 2>/dev/null || true
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+        yes | sdkmanager --licenses > /dev/null 2>&1 || true
+        sdkmanager "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1
 
     - name: Generate Gradle Wrapper
-      run: gradle wrapper --gradle-version 8.0
+      run: |
+        curl -sL "https://services.gradle.org/distributions/gradle-8.0-bin.zip" -o gradle.zip
+        unzip -q gradle.zip
+        ./gradle-8.0/bin/gradle wrapper --gradle-version 8.0 --no-daemon
+        ./gradle-8.0/bin/gradle --stop 2>/dev/null || true
+        rm -rf gradle.zip gradle-8.0
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleDebug --no-daemon
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
