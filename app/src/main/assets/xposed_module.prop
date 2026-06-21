@@ -1,0 +1,4 @@
+xposedmodule=true
+xposeddescription=Fixes notification lag when 10+ notifications are present
+xposedminversion=82
+xposedscope=android

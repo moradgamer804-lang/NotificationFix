@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#0d0d1a">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AGGRESSIVE MODE"
+                android:textSize="24sp"
+                android:textColor="#ff0040"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000+ SMS Protection Active"
+                android:textSize="14sp"
+                android:textColor="#00ff88"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Device Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#1a1a2e"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/deviceInfoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#00ff88"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- Threshold -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification Threshold (2-20)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/thresholdValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="#ff0040"
+                android:textStyle="bold"/>
+            <SeekBar
+                android:id="@+id/thresholdSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="18"
+                android:progress="3"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Max Per App -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Notifications Per App (5-50)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/maxPerAppValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="#ff0040"
+                android:textStyle="bold"/>
+            <SeekBar
+                android:id="@+id/maxPerAppSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="9"
+                android:progress="1"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Max Total -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Total Notifications (20-200)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/maxTotalValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textColor="#ff0040"
+                android:textStyle="bold"/>
+            <SeekBar
+                android:id="@+id/maxTotalSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="9"
+                android:progress="2"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Batch Delay -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batch Delay (500-5000ms)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/delayValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2000ms"
+                android:textColor="#ff0040"
+                android:textStyle="bold"/>
+            <SeekBar
+                android:id="@+id/delaySeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="9"
+                android:progress="3"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Cooldown -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cooldown Time (1-15 seconds)"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/cooldownValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5s"
+                android:textColor="#ff0040"
+                android:textStyle="bold"/>
+            <SeekBar
+                android:id="@+id/cooldownSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="14"
+                android:progress="4"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Protection Switches -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="=== PROTECTION ==="
+                android:textColor="#00ff88"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableLimiterSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enable Flood Protection"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableSmsFloodSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SMS Flood Protection"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableDuplicateSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Block Duplicate Notifications"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableCompressionSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aggressive Memory Compression"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Optimization Switches -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="=== OPTIMIZATION ==="
+                android:textColor="#00ff88"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableGroupingSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification Grouping"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableMemorySwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Memory Optimization"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/enableUnisocSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unisoc T616 Fix"
+                android:textColor="#ffffff"
+                android:checked="true"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Info Box -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#1a0a0a"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PROTECTION LEVEL:"
+                    android:textColor="#ff0040"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- 1000+ SMS: BLOCKED\n- Rapid Fire: BLOCKED\n- Duplicates: BLOCKED\n- Memory: OPTIMIZED\n- Calls: ALWAYS ALLOWED"
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- How to Use -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#0a1a0a"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HOW TO USE:"
+                    android:textColor="#00ff88"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. LSPosed Manager > Module\n2. Enable this module\n3. Scope: System Framework\n4. Reboot device"
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
