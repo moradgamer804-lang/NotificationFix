@@ -39,11 +39,12 @@ jobs:
     - name: Download Xposed API
       run: |
         mkdir -p app/libs
-        echo "Downloading Xposed API jar..."
-        curl -sL -o app/libs/api-82.jar \
-          "https://github.com/bywhat/XposedBridgeApi/raw/refs/heads/main/XposedBridgeAPI-82.jar" || \
+        echo "Downloading Xposed API jar from Appodeal..."
         curl -sL -o app/libs/api-82.jar \
           "https://artifactory.appodeal.com/appodeal-public/de/robv/android/xposed/api/82/api-82.jar" || \
+        echo "Retrying from alternative source..."
+        curl -sL -o app/libs/api-82.jar \
+          "https://github.com/bywhat/XposedBridgeApi/raw/refs/heads/main/XposedBridgeAPI-82.jar" || \
         echo "FAILED TO DOWNLOAD XPOSED API JAR"
         ls -la app/libs/
         file app/libs/api-82.jar
