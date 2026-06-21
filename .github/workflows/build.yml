@@ -39,22 +39,14 @@ jobs:
     - name: Download Xposed API
       run: |
         mkdir -p app/libs
-        XPOSED_URLS=(
-          "https://api.xposed.info/repository/de/robv/android/xposed/api/82/api-82.jar"
-          "https://jcenter.bintray.com/de/robv/android/xposed/api/82/api-82.jar"
-          "https://repo1.maven.org/maven2/de/robv/android/xposed/api/82/api-82.jar"
-        )
-        for url in "${XPOSED_URLS[@]}"; do
-          if curl -sfL "$url" -o app/libs/api-82.jar 2>/dev/null; then
-            echo "Xposed API jar downloaded from $url"
-            break
-          fi
-        done
-        if [ ! -f app/libs/api-82.jar ]; then
-          echo "Download from maven failed, trying GitHub..."
-          curl -sL "https://github.com/rovo89/XposedBridge/raw/master/src/external/xposed.jar" -o app/libs/api-82.jar 2>/dev/null || true
-        fi
+        echo "Downloading Xposed API jar..."
+        curl -sL -o app/libs/api-82.jar \
+          "https://github.com/bywhat/XposedBridgeApi/raw/refs/heads/main/XposedBridgeAPI-82.jar" || \
+        curl -sL -o app/libs/api-82.jar \
+          "https://artifactory.appodeal.com/appodeal-public/de/robv/android/xposed/api/82/api-82.jar" || \
+        echo "FAILED TO DOWNLOAD XPOSED API JAR"
         ls -la app/libs/
+        file app/libs/api-82.jar
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug --no-daemon
