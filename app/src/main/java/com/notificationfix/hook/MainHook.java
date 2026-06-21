@@ -32,6 +32,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -743,18 +744,13 @@ public class MainHook implements IXposedHookLoadPackage {
     }
 
     private long computeNotificationHash(String pkg, Notification notification) {
-        // Simple hash based on package, id, and content
         long hash = pkg.hashCode();
-        hash = 31 * hash + notification.id;
-        
         if (notification.extras != null) {
             CharSequence title = notification.extras.getCharSequence(Notification.EXTRA_TITLE);
             CharSequence text = notification.extras.getCharSequence(Notification.EXTRA_TEXT);
-            
-            if (title != null) hash = 31 * hash + title.hashCode();
-            if (text != null) hash = 31 * hash + text.hashCode();
+            hash = 31 * hash + (title != null ? title.hashCode() : 0);
+            hash = 31 * hash + (text != null ? text.hashCode() : 0);
         }
-        
         return hash;
     }
 
@@ -805,7 +801,6 @@ public class MainHook implements IXposedHookLoadPackage {
             if (notification.extras != null) {
                 notification.extras.remove(Notification.EXTRA_PICTURE);
                 notification.extras.remove(Notification.EXTRA_LARGE_ICON);
-                notification.extras.remove(Notification.EXTRA_BIG_PICTURE);
             }
             
             // Remove custom views (biggest memory hog)
@@ -824,7 +819,6 @@ public class MainHook implements IXposedHookLoadPackage {
             // Remove ALL bitmaps
             notification.extras.remove(Notification.EXTRA_PICTURE);
             notification.extras.remove(Notification.EXTRA_LARGE_ICON);
-            notification.extras.remove(Notification.EXTRA_BIG_PICTURE);
             notification.extras.remove(Notification.EXTRA_SMALL_ICON);
             notification.extras.remove(Notification.EXTRA_SUB_TEXT);
             notification.extras.remove(Notification.EXTRA_INFO_TEXT);
